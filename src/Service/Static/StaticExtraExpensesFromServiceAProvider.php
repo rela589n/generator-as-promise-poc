@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Service;
+namespace App\Service\Static;
 
 use Generator;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
-final readonly class ExtraExpensesFromServiceAProvider
+final readonly class StaticExtraExpensesFromServiceAProvider
 {
     public function __construct(
         private HttpClientInterface $httpClient

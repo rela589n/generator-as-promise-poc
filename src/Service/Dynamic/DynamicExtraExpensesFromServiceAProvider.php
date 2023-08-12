@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Service;
+namespace App\Service\Dynamic;
 
 use Generator;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
-final readonly class ExtraExpensesFromServiceBProvider
+final readonly class DynamicExtraExpensesFromServiceAProvider
 {
     public function __construct(
         private HttpClientInterface $httpClient
@@ -17,7 +17,7 @@ final readonly class ExtraExpensesFromServiceBProvider
 
     public function getExpenses(): Generator
     {
-        $response = $this->httpClient->request('GET', 'https://my-json-server.typicode.com/typicode/demo/comments');
+        $response = $this->httpClient->request('GET', 'https://127.0.0.1:8001/service/a');
 
         return yield $this->processResponse($response);
     }

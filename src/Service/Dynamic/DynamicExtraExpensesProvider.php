@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\Service;
+namespace App\Service\Dynamic;
 
-final readonly class ExtraExpensesProvider
+final readonly class DynamicExtraExpensesProvider
 {
     public function __construct(
-        private ExtraExpensesFromServiceAProvider $serviceAProvider,
-        private ExtraExpensesFromServiceBProvider $serviceBProvider,
+        private DynamicExtraExpensesFromServiceAProvider $serviceAProvider,
+        private DynamicExtraExpensesFromServiceBProvider $serviceBProvider,
     ) {
     }
 
-    public function getExpensesFast(): array
+    public function getExpensesConcurrent(): array
     {
         $serviceAPromise = $this->serviceAProvider->getExpenses();
         $serviceBPromise = $this->serviceBProvider->getExpenses();
@@ -22,7 +22,8 @@ final readonly class ExtraExpensesProvider
 
         return array_merge($serviceAExpenses, $serviceBExpenses);
     }
-    public function getExpensesSlow(): array
+
+    public function getExpensesConsecutive(): array
     {
         $serviceAPromise = $this->serviceAProvider->getExpenses();
         $serviceAExpenses = $serviceAPromise->current();
