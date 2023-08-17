@@ -11,7 +11,7 @@ class ServiceAController extends AbstractController
     #[Route('/service/a', name: 'app_service_a')]
     public function index(): JsonResponse
     {
-        sleep(1);
+        sleep(5);
 
         return $this->json([
             ['id' => 1],
